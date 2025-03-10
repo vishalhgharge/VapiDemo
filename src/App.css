@@ -1,0 +1,252 @@
+/* Basic Styles */
+.App {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.85); /* Dark background */
+    color: white;
+  }
+  
+  .App-header {
+    text-align: center;
+  }
+  
+  /* Pulse Container */
+  .pulse-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Circle Pulse Animation */
+  .pulse-animation {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    gap: 10px;
+  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .pulse-animation.animate {
+    animation: pulsate 1.5s infinite;
+    box-shadow: 0 0 20px rgba(255, 123, 0, 0.95); /* Glowing effect */
+  }
+  
+  /*   box-shadow: 0 0 20px rgba(0, 123, 255, 0.75); */ 
+  
+  @keyframes pulsate {
+    0% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1.2);
+      opacity: 0.6;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+  
+  /* Image inside the circle */
+  .circle-image {
+    width: 180px;
+    height: 180px;
+  }
+  
+  /* Listening Text Styles */
+  .listening-text {
+    font-size: 18px;
+    color: #eddbdb;
+    margin-top: 20px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+  }
+  
+  /* Call Button Styles */
+  .call-button {
+    margin-left: 110px;
+    font-size: 18px;
+    padding: 20px;
+    width: 80px;
+    height: 80px; 
+    border: none;
+    border-radius: 50%; 
+    cursor: pointer;
+    margin-top: 50px;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+  }
+  
+  .call-button.start {
+    background-color: green;
+    color: white;
+  }
+  
+  .call-button.stop {
+    background-color: red;
+    color: white;
+  }
+  
+  .call-button:hover {
+    transform: scale(1.1);
+  }
+  
+  .audio-spectrum {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-image: radial-gradient(circle, rgba(127, 0, 237, 0.6), rgba(0, 0, 0, 0));
+    opacity: 0.5;
+    border: 4px solid transparent;
+    background-clip: border-box;
+    transform-origin: center; /* Ensures the animation rotates from the center */
+  }
+  
+  /* Lines extending outward like audio spectrum spikes */
+  .audio-spectrum::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: none;
+    box-shadow: 0 0 0 2px rgba(127, 0, 237, 0.6), 
+                0 0 0 4px rgba(127, 0, 237, 0.6), 
+                0 0 0 0 rgba(127, 0, 237, 0.6), 
+                0 0 0 0 rgba(127, 0, 237, 0.6);
+    transition: box-shadow 0.5s ease-in-out; /* Smooth transition */
+  }
+  
+  /* Active state of the audio spectrum when AI speaks */
+  .audio-spectrum.active::before {
+    animation: audioSpectrumSpikes 1.5s infinite linear;
+  }
+  
+  /* Animation for the spikes extending outward from the center */
+  @keyframes audioSpectrumSpikes {
+    0% {
+      box-shadow: 
+        0 0 0 3px rgba(127, 0, 237, 0.6), 
+        0 0 0 6px rgba(127, 0, 237, 0.6), 
+        0 0 0 12px rgba(127, 0, 237, 0.6),
+        0 0 0 px rgba(127, 0, 237, 0.6);
+    }
+    100% {
+      box-shadow: 
+        0 0 0 10px rgba(127, 0, 237, 0.7),
+        0 0 0 20px rgba(127, 0, 237, 0.8),
+        0 0 0 30px rgba(127, 0, 237, 0.9),
+        0 0 0 40px rgba(127, 0, 237, 1);
+    }
+  }
+  
+  /* Keyframes for rotating the spectrum */
+  @keyframes audioSpectrum {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  /* Keyframes for the active spectrum with fading effect */
+  @keyframes audioSpectrumActive {
+    0% {
+      transform: rotate(0deg);
+      opacity: 0.5;
+    }
+    25% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 0.75;
+    }
+    75% {
+      opacity: 0.5;
+    }
+    100% {
+      transform: rotate(360deg);
+      opacity: 0.5;
+    }
+  }
+  
+  /* Equalizer Bars Inside the Circle */
+  .equalizer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    gap: 5px;
+  }
+  
+  .equalizer-bar {
+    width: 8px;
+    height: 30px;
+    background-color: #4caf50;
+    animation: bounce 1s infinite ease-in-out;
+  }
+  
+  .equalizer-bar:nth-child(1) {
+    animation-delay: 0s;
+  }
+  .equalizer-bar:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+  .equalizer-bar:nth-child(3) {
+    animation-delay: 0.4s;
+  }
+  .equalizer-bar:nth-child(4) {
+    animation-delay: 0.6s;
+  }
+  .equalizer-bar:nth-child(5) {
+    animation-delay: 0.8s;
+  }
+  
+  @keyframes bounce {
+    0%, 100% {
+      height: 30px;
+    }
+    50% {
+      height: 60px;
+    }
+  }
+  
+
+/* waiting  */
+  .waiting-loader {
+    margin-top: 20px;
+    text-align: center;
+    color: #fff;
+  }
+  
+  .loader-spinner {
+    margin: 10px auto;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #3498db;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
