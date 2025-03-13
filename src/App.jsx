@@ -70,9 +70,9 @@ const App = () => {
   return (
     <div className="App">
       <header className="App-header">
-        <h1 style={{ marginBottom: '50px', fontFamily: 'Raleway, sans-serif' }}>
-          Al Wathba Demo
-        </h1>
+        <h2 style={{ marginBottom: '50px', fontFamily: 'Raleway, sans-serif' }}>
+        Al Wathba Demo - Arabic
+        </h2>
 
 
         <div className="pulse-container">
